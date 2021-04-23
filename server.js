@@ -1,7 +1,5 @@
 const express = require('express');
 const mysql = require('mysql2');
-const { ADDRGETNETWORKPARAMS } = require('node:dns');
-const { allowedNodeEnvironmentFlags } = require('node:process');
 //const inputCheck = require('./utils/inputCheck');
 const connect = require('./config/connection')
 
