@@ -1,12 +1,8 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 
-
-
 //const inputCheck = require('./utils/inputCheck');
 const connection = require('./config/connection')
-
-
 
 
 // WHEN I start the application THEN I am presented with the following options: 
@@ -28,8 +24,22 @@ const viewAll = () => {
              break;
         case 'View all roles':
             allRoles();
-            break;}
-      
+            break;
+        case 'View all employees':
+            allEmp();
+            break;
+        // case 'Add a department':
+        //     addDept();
+        //     break;
+        // case 'Add a role':
+        //     addRoles();
+        //     break;
+        // case 'Add an employee':
+        //     addEmp();
+        //     break;
+        // case 'Update an employee role':
+        //     updateEmp();
+        }
     })
 }
 
@@ -45,43 +55,29 @@ function allDept(){
 };
 
 // // WHEN I choose to view all roles THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
-// const allRoles(
-//     app.get('/api/roles', (req, res) => {
-//         const sql = `SELECT * FROM roles`;
-
-//         db.query(sql, (err, rows) => {
-//             if (err) {
-//                 res.status(500).json({ error: err.message });
-//                 return;
-//             }
-//             res.json({
-//                 message: 'success',
-//                 data: rows
-//             });
-//         });
-//     });
-// );
+function allRoles(){
+    let query = "SELECT * FROM roles";
+    connection.query(query, function (err, res){
+        console.log("roles")
+        res.forEach(roles => {
+            console.log(`ID: ${roles.id} | NAME: ${roles.role_name} | SALARY: ${roles.role_salary} | DEPT ID: ${roles.role_dept}`)
+        })
+    })
+};
 
 // // WHEN I choose to view all employees THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-// const allEmp(
-//     app.get('/api/emp', (req, res) => {
-//         const sql = `SELECT * FROM emp`;
-
-//         db.query(sql, (err, rows) => {
-//             if (err) {
-//                 res.status(500).json({ error: err.message });
-//                 return;
-//             }
-//             res.json({
-//                 message: 'success',
-//                 data: rows
-//             });
-//         });
-//     });
-// );
+function allEmp(){
+    let query = "SELECT * FROM emp";
+    connection.query(query, function (err, res){
+        console.log("employee")
+        res.forEach(employee => {
+            console.log(`ID: ${employee.id} | NAME: ${employee.emp_first_name} ${employee.emp_last_name} | ROLE ID: ${employee.emp_role} | MANAGER ID: ${employee.emp_manager}`)
+        })
+    })
+};
 
 // // WHEN I choose to add a department THEN I am prompted to enter the name of the department and that department is added to the database
-// const addDept(
+// function addDept(
 //     app.post('/api/dept', ({ body }, res) => {
 //         const errors = inputCheck(body, 'dept_name', 'dept_id');
 //         if (errors) {
@@ -158,5 +154,5 @@ function allDept(){
 // );
 
 // WHEN I choose to update an employee role THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
-
+//updateEmp
 viewAll();

@@ -8,7 +8,6 @@ CREATE TABLE dept(
     PRIMARY KEY(id)
 );
 
-
 CREATE TABLE roles(
     id  INTEGER AUTO_INCREMENT,
     role_name  VARCHAR(30) NOT NULL,
