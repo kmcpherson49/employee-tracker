@@ -1,14 +1,13 @@
-// import the Sequelize constructor from the library
-const Sequelize = require('sequelize');
 
-//for password protection
-require('dotenv').config();
+const mysql = require('mysql2');
 
-// create connection to our database, pass in your MySQL information for username and password
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
-  host: 'localhost',
-  dialect: 'mysql',
-  port: 3306
-});
+const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "", 
+    database: "employee_tracker_db"
+})
 
-module.exports = sequelize;
+connection.connect();
+
+module.exports = connection;
