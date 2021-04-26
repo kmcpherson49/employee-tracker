@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
+//const express = require('express');
 
 //const inputCheck = require('./utils/inputCheck');
 const connection = require('./config/connection')
@@ -28,9 +29,9 @@ const viewAll = () => {
         case 'View all employees':
             allEmp();
             break;
-        // case 'Add a department':
-        //     addDept();
-        //     break;
+        case 'Add a department':
+            addDept();
+            break;
         // case 'Add a role':
         //     addRoles();
         //     break;
@@ -77,30 +78,79 @@ function allEmp(){
 };
 
 // // WHEN I choose to add a department THEN I am prompted to enter the name of the department and that department is added to the database
-// function addDept(
-//     app.post('/api/dept', ({ body }, res) => {
-//         const errors = inputCheck(body, 'dept_name', 'dept_id');
-//         if (errors) {
-//             res.status(400).json({ error: errors });
-//             return;
-//         }
+function addDept(){
+    // connection.connect(function(err) {
+    //     if (err) throw err;
+    //     console.log("Connected!");
+    //     let sql = 'INSERT INTO dept (dept_name) VALUES (?)';
+    //     connection.query(sql, function (err, result) {
+    //       if (err) throw err;
+    //       console.log("1 record inserted");
+    //     });
 
-//         const sql = `INSERT INTO dept (dept_name, dept_id)
-//     VALUES (?,?)`;
-//         const params = [body.dept_name, body.dept_id];
+    // app.post("/api/dept", (req, res) => {
+    //     console.log(req.body)
+    //     connection.query('INSERT INTO dept (dept_name) VALUES (?)', [dept.dept_name],(error, results) => {
+    //         if (error) return res.json({ error: error});
+    //     });
+    // });
+};
+    // let query = "INSERT INTO dept";
+    // connection.query(query, function (err, res){
+    //     console.log("department")
+    //     res.forEach(department => {
+    //         console.log(`ID: ${employee.id} | NAME: ${employee.emp_first_name} ${employee.emp_last_name} | ROLE ID: ${employee.emp_role} | MANAGER ID: ${employee.emp_manager}`)
+    //     })
+    // })
+    // inquirer.prompt([
+    //     {
+    //         type: "input",
+    //         name: "addDept",
+    //         message: "Input the department name"
+    //     }
+    // ]).then(
+    //     connection.connect(function(err) {
+    //         if (err) throw err;
+    //         console.log("Connected!");
+    //         var sql = "INSERT INTO dept (dept_name) VALUES ?";
+    //         connection.query(sql, function (err, result) {
+    //           if (err) throw err;
+    //           console.log("1 record inserted");
+    //         });
+    // }) 
+    // )
+    // };
+    //      let query = "INSERT INTO dept";
+    // connection.query(query, function (err, res){
+    //     console.log("department")
+    //     res.forEach(department => {
+    //         console.log(`ID: ${department.id} | NAME: ${employee.emp_first_name} ${employee.emp_last_name} | ROLE ID: ${employee.emp_role} | MANAGER ID: ${employee.emp_manager}`)
+    //     })
+    // })
 
-//         db.query(sql, params, (err, result) => {
-//             if (err) {
-//                 res.status(400).json({ error: err.message });
-//                 return;
-//             }
-//             res.json({
-//                 message: 'success',
-//                 data: body
-//             });
-//         });
-//     });
-// );
+    //     app.post('/api/dept', ({ body }, res) => {
+    //     const errors = inputCheck(body, 'dept_name');
+    //     if (errors) {
+    //         res.status(400).json({ error: errors });
+    //         return;
+    //     }
+
+    //     const sql = `INSERT INTO dept (dept_name)
+    //     VALUES (?)`;
+    //     const params = [body.dept_name];
+
+    //     db.query(sql, params, (err, result) => {
+    //         if (err) {
+    //             res.status(400).json({ error: err.message });
+    //             return;
+    //         }
+    //         res.json({
+    //             message: 'success',
+    //             data: body
+    //         });
+    //     });
+    // })});
+
 // // WHEN I choose to add a role THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
 // const addRole(
 //     app.post('/api/roles', ({ body }, res) => {
